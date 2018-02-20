@@ -3,6 +3,8 @@ require 'cgi'
 require 'netrc'
 require 'set'
 
+require 'pry'
+
 begin
   # Use mime/types/columnar if available, for reduced memory usage
   require 'mime/types/columnar'
@@ -175,7 +177,7 @@ module RestClient
     # @return [Boolean]
     #
     def use_ssl?
-      uri.is_a?(URI::HTTPS)
+      uri.is_a?(URI::HTTPS) unless (verify_ssl == false)
     end
 
     # Extract the query parameters and append them to the url

@@ -100,6 +100,15 @@ describe RestClient::Request do
       )
       expect { request.execute }.to_not raise_error
     end
+
+    it 'disables ssl verfication when ssl_verify is set to false' do
+      request = RestClient::Request.new(
+        :method => :get,
+        :url => 'https://self-signed.badssl.com/',
+        :verify_ssl => false,
+      )
+      expect { request.execute }.to_not raise_error
+    end
   end
 
   describe "timeouts" do
