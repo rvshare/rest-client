@@ -177,7 +177,7 @@ module RestClient
     # @return [Boolean]
     #
     def use_ssl?
-      uri.is_a?(URI::HTTPS) unless (verify_ssl == false)
+      uri.is_a?(URI::HTTPS) unless (verify_ssl == false || verify_ssl == OpenSSL::SSL::VERIFY_NONE)
     end
 
     # Extract the query parameters and append them to the url
